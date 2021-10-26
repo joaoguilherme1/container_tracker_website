@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row text-center">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <p class="text-justify">
+                Nós iremos rastrear os dados do container de acordo com o armador.
+                Para realizar a pesquisa, digite o código do container abaixo.
+            </p>
+            <p>Entre com o código do container:</p>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            {% for message in messages %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <form action="{% url 'procura' %}" method="POST">
+            {% csrf_token %}
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Número do containe. Ex: ABCD1234567"
+                        aria-label="Número do container" aria-describedby="button-addon2"
+                        id="{{ form.container_number.id_for_label }}" name="{{ form.container_number.name }}"
+                        value="{{ form.container_number.value | default_if_none:'' }}">
+
+                    <div class="input-group=append">
+                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2" data-toggle="modal"
+                            data-target="#waitingModalCenter">Procurar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock content %}
