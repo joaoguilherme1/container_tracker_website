@@ -17,9 +17,9 @@ def is_valid_carrier(container_number):
 
 
 def _parser_content(content):
-    status = content['containerNumberStatus']
-    location = content['location']
-    date = content['timeOfIssue']
+    status = content["containerNumberStatus"]
+    location = content["location"]
+    date = content["timeOfIssue"]
     carrier = "Cosco Shipping"
     return dict(date=date, status=status, location=location, carrier=carrier)
 
@@ -31,8 +31,9 @@ def _execute(url, container_id):
     response_text = response.json()
 
     try:
-        data = (response_text['data']['content']['containers'][0]
-                ["containerCircleStatus"][0])
+        data = response_text["data"]["content"]["containers"][0][
+            "containerCircleStatus"
+        ][0]
 
         data = _parser_content(data)
         return data
@@ -48,13 +49,12 @@ def is_valid_carrier(container_number):
 
 
 def request_container_info(container_number):
-    url = 'http://elines.coscoshipping.com/ebtracking/public/containers/{container_id}?timestamp=1559757057924'
+    url = "http://elines.coscoshipping.com/ebtracking/public/containers/{container_id}?timestamp=1559757057924"
 
     if not is_valid_carrier(container_number):
         return None
 
     return _execute(url, container_number)
-
 
 
 if __name__ == "__main__":

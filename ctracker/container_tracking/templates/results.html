@@ -1,3 +1,19 @@
-<div>
-    Este é o container numero {{ container_number }}
+{% extends 'index.html' %}
+
+{% block resultados %}
+
+{% comment %} {% for container in containers %} {% endcomment %}
+<div class="list-group">
+    <a href="#" class="list-group-item list-group-item-action">
+        <div class="d-flex-w-100 justify-content-between">
+            <h5 class="mb-1">{{ containers.number }}</h5>
+            <small>Ultima atualização as {{ container.last_import }}</small>
+        </div>
+        <p class="mb-1">{{ containers.status }} as {{ containers.date }}</p>
+        <p class="mb-1">{{ containers.location }}</p>
+        <small>{{ container.carrier }}</small>
+    </a>
 </div>
+{% comment %} {% endfor %} {% endcomment %}
+
+{% endblock resultados %}

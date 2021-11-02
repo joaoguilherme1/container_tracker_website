@@ -4,13 +4,21 @@ from django.contrib import messages
 from .forms import ProcurarForm
 from .carries import is_valid_carrier, request_container_info
 
+
 def index(request):
     form = ProcurarForm()
-    return render(request, 'index.html', {'form': form})
+    return render(request, "index.html", {"form": form})
 
 
 def resultados(request, container_number):
-    return render(request, 'results.html', {"container_number": container_number})
+
+    data = request_container_info(container_number)
+
+    return render(
+        request,
+        "results.html",
+        {"containers": data, "container_number": container_number},
+    )
 
 
 def procura(request):
@@ -20,7 +28,7 @@ def procura(request):
 
         if form.is_valid():
             cd = form.cleaned_data
-            container_number = cd.get('container_number')
+            container_number = cd.get("container_number")
 
             if is_valid_carrier(container_number):
                 return HttpResponseRedirect(container_number)
