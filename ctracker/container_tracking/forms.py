@@ -7,7 +7,9 @@ class ProcurarForm(forms.Form):
         max_length=11,
         required=True,
         validators=[
-            RegexValidator("[A-Z]{4}\d{7}", message="Número do container invalido")
+            RegexValidator(
+                "[A-Z]{4}\d{7}", message="Número do container invalido"
+            )
         ],
         label="",
     )

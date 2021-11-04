@@ -18,9 +18,7 @@
             {% for message in messages %}
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
                     {{ message }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             {% endfor %}
         </div>
@@ -37,8 +35,8 @@
                         value="{{ form.container_number.value | default_if_none:'' }}">
 
                     <div class="input-group=append">
-                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2" data-toggle="modal"
-                            data-target="#waitingModalCenter">Procurar</button>
+                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">Procurar</button>
                     </div>
                 </div>
             </form>
@@ -52,31 +50,29 @@
         </div>
     </div>
 
-    
-    <div class="modal fade" id="watingModalCenter" tabindex="-1" role="dialog" aria-labelledby="watingModalCenterTitle"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12">
-                                Contactando o armador... Isto poderá levar algum tempo :-)
-                            </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            Contactando o armador... Isto poderá levar algum tempo
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="d-flex justify-content-center">
-                                    <div class="spinner-grow text-primary" role="status">
-                                        <span class="sr-only">Loading...</span>
-                                    </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="d-flex justify-content-center">
+                                <div class="spinner-grow text-primary" role="status">
+                                    <span class="sr-only">Loading...</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+          </div>
         </div>
-    </div>
+      </div>
 
 {% endblock content %}
