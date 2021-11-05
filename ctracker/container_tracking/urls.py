@@ -10,4 +10,5 @@ urlpatterns = [
         "<AAAADDDDDDD:container_number>", views.resultados, name="resultados"
     ),
     path("procura", views.procura, name="procura"),
+    path("feedback", views.feedback, name="feedback"),
 ]

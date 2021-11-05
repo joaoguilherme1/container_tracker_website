@@ -97,3 +97,12 @@ def procura(request):
                 messages.error(request, erros[error][0])
 
     return render(request, "index.html", {"form": form})
+
+
+def feedback(request):
+    if request.method == "POST":
+        feature_search_ui = request.POST.get('featureSearchUI')
+        feature_api = request.POST.get('featureAPIBrazil')
+        feature_container_history = request.POST.get('featureContainerHistory')
+        user_email = request.POST.get('userEmail')
+
